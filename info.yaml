@@ -1,16 +1,16 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
+  title:        "FIFO"      # Project title
+  author:       "Sanneella Nishitha"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
+  description:  "A FIFO (First-In, First-Out) buffer is a memory queue that outputs data in the same order it was received, ensuring sequential data processing."      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     10000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
-  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  # Your top module name must start with "tt_um_fifo". Make it unique by including your github username:
   top_module:  "tt_um_example"
 
   # List your project's source files here.
@@ -23,22 +23,22 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "RD"
+  ui[1]: "WR"
+  ui[2]: "EN"
+  ui[3]: "Rst"
+  ui[4]: "dataIn[0]"
+  ui[5]: "dataIn[1]"
+  ui[6]: "dataIn[2]"
+  ui[7]: "dataIn[3]"
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
+  uo[0]: "dataOut[0]"
+  uo[1]: "dataOut[1]"
+  uo[2]: "dataOut[2]"
+  uo[3]: "dataOut[3]"
+  uo[4]: "Empty"
+  uo[5]: "Full"
   uo[6]: ""
   uo[7]: ""
 
