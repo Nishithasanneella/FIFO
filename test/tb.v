@@ -1,112 +1,53 @@
 
+`default_nettype none
 `timescale 1ns / 1ps
 
-module FIFObuffer_tb;
+/*
+ * FIFO Testbench wrapper for integration with Tiny Tapeout style test
+ * Instantiates the FIFO design and wires the IO signals accordingly.
+ * Allows for external control via ui_in/uio and observation via uo_out/uio_out.
+*/
+module tb ();
 
- // Inputs
+  // Dump the signals to a VCD file
+  initial begin
+    $dumpfile("tb.vcd");
+    $dumpvars(0, tb);
+    #1;
+  end
 
- reg Clk;
+  // Inputs and outputs
+  reg clk;
+  reg rst_n;
+  reg ena;
+  reg [7:0] ui_in;
+  reg [7:0] uio_in;
+  wire [7:0] uo_out;
+  wire [7:0] uio_out;
+  wire [7:0] uio_oe;
 
- reg [31:0] dataIn;
+`ifdef GL_TEST
+  wire VPWR = 1'b1;
+  wire VGND = 1'b0;
+`endif
 
- reg RD;
+  // Instantiate the FIFO module
+  tt_um_fifo user_project (
 
- reg WR;
+`ifdef GL_TEST
+      .VPWR(VPWR),
+      .VGND(VGND),
+`endif
 
- reg EN;
-
- reg Rst;
-
- // Outputs
-
- wire [31:0] dataOut;
-
- wire EMPTY;
-
- wire FULL;
-
- // Instantiate the Unit Under Test (UUT)
-
- FIFObuffer uut (
-
-                  .Clk(Clk), 
-
-                  .dataIn(dataIn), 
-
-                  .RD(RD), 
-
-                  .WR(WR), 
-
-                  .EN(EN), 
-
-                  .dataOut(dataOut), 
-
-                  .Rst(Rst), 
-
-                  .EMPTY(EMPTY), 
-
-                  .FULL(FULL)
-
-                  );
-
- initial begin
-
-  // Initialize Inputs
-
-  Clk  = 1'b0;
-
-  dataIn  = 32'h0;
-
-  RD  = 1'b0;
-
-  WR  = 1'b0;
-
-  EN  = 1'b0;
-
-  Rst  = 1'b1;
-
-  // Wait 100 ns for global reset to finish
-
-  #100;        
-
-  // Add stimulus here
-
-  EN  = 1'b1;
-
-  Rst  = 1'b1;
-
-  #20;
-
-  Rst  = 1'b0;
-
-  WR  = 1'b1;
-
-  dataIn  = 32'h0;
-
-  #20;
-
-  dataIn  = 32'h1;
-
-  #20;
-
-  dataIn  = 32'h2;
-
-  #20;
-
-  dataIn  = 32'h3;
-
-  #20;
-
-  dataIn  = 32'h4;
-
-  #20;
-
-  WR = 1'b0;
-
-  RD = 1'b1;  
-
- end 
-
-   always #10 Clk = ~Clk;    
+      .ui_in  (ui_in),
+      .uo_out (uo_out),
+      .uio_in (uio_in),
+      .uio_out(uio_out),
+      .uio_oe (uio_oe),
+      .ena    (ena),
+      .clk    (clk),
+      .rst_n  (rst_n)
+  );
 
 endmodule
+
