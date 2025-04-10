@@ -35,11 +35,15 @@ module tt_um_fifo(
   assign uio_oe  = 8'b00000000;
   assign uio_out = 8'b00000000;
 
+  integer i;
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       wr_ptr <= 0;
       rd_ptr <= 0;
       data_out <= 0;
+      for(i=0 ; i<16 ; i=i+1) begin
+        fifo[i] = 6'd0;
+      end
     end 
     
     else if (ena) begin
