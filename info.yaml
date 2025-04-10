@@ -11,7 +11,7 @@ project:
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_fifo". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_fifo"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
@@ -23,24 +23,24 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "RD"
-  ui[1]: "WR"
-  ui[2]: "EN"
-  ui[3]: "Rst"
-  ui[4]: "dataIn[0]"
-  ui[5]: "dataIn[1]"
-  ui[6]: "dataIn[2]"
-  ui[7]: "dataIn[3]"
+  ui[0]: "WR"
+  ui[1]: "RD"
+  ui[2]: "dataIn0"
+  ui[3]: "dataIn1"
+  ui[4]: "dataIn2"
+  ui[5]: "dataIn3"
+  ui[6]: "dataIn4"
+  ui[7]: "dataIn5"
 
   # Outputs
-  uo[0]: "dataOut[0]"
-  uo[1]: "dataOut[1]"
-  uo[2]: "dataOut[2]"
-  uo[3]: "dataOut[3]"
-  uo[4]: "Empty"
-  uo[5]: "Full"
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "Full"
+  uo[1]: "Empty"
+  uo[2]: "dataOut0"
+  uo[3]: "dataOut1"
+  uo[4]: "dataOut2"
+  uo[5]: "dataOut3"
+  uo[6]: "dataOut4"
+  uo[7]: "dataOut5"
 
   # Bidirectional pins
   uio[0]: ""
